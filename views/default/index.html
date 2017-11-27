@@ -1,0 +1,75 @@
+{{extend 'layout.html'}}
+<div class="container">
+    <div class="well well-sm">
+        <strong>Browse by Category</strong>
+    </div>
+    <div class="row list-group">
+       {{ for c in categories:}}
+        <div class="col-xs-3 col-lg-3">
+            <div class="thumbnail">
+              <a href="{{=URL(request.application,'default','products',vars=dict(category=c))}}"> <img src="http://placehold.it/500x300" alt=""> </a>
+                <div class="caption">
+                    <h4 class="list-group-item-heading text-center">
+                        {{=c}}</h4>
+                </div>
+            </div>
+        </div>
+        {{pass}}
+    </div>
+
+    <div class="well well-sm">
+        <strong>Featured Books</strong> <a class="btn btn-mini pull-right nohover" href="{{=URL(request.application,'default','products',vars=dict(type='featured'))}}">» View More</a>
+    </div>
+    <div class="row list-group">
+      {{ for p in featureproducts:}}
+        <div class="item  col-xs-3 col-lg-3">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{=URL('fast_download',args=p.pimage)}}" alt="{{=p.pname}}" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{=p.pname}}</h4>
+                    <div class="group inner list-group-item-text">
+                      <p>Author   : {{=p.pauthor}}</p>
+                      <p>Category : {{=p.pcategory}}<p>
+                      <p>Language : {{=p.planguage}}<p>
+                      <p>Rating   : {{ for r in range(p.prating):}}<span class="glyphicon glyphicon-star"></span>{{pass}}<p>
+                  </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <a class="btn btn-success pull-right" href="{{=URL(request.application,'default','viewproductdetails',args=[p.id])}}">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{pass}}
+    </div>
+
+    <div class="well well-sm">
+        <strong>Recent Books</strong> <a class="btn btn-mini pull-right nohover" href="{{=URL(request.application,'default','products',vars=dict(type='recent'))}}">» View More</a>
+    </div>
+    <div class="row list-group">
+      {{ for p in recentproducts:}}
+        <div class="item  col-xs-3 col-lg-3">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{=URL('fast_download',args=p.pimage)}}" alt="{{=p.pname}}" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{=p.pname}}</h4>
+                    <div class="group inner list-group-item-text">
+                      <p>Author   : {{=p.pauthor}}</p>
+                      <p>Category : {{=p.pcategory}}<p>
+                      <p>Language : {{=p.planguage}}<p>
+                      <p>Rating   : {{ for r in range(p.prating):}}<span class="glyphicon glyphicon-star"></span>{{pass}}<p>
+                  </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <a class="btn btn-success pull-right" href="{{=URL(request.application,'default','viewproductdetails',args=[p.id])}}">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{pass}}
+    </div>
+</div>

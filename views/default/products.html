@@ -1,0 +1,58 @@
+{{extend 'layout.html'}}
+<div class="container">
+  <form enctype="multipart/form-data" method="get" action={{=URL('default','products')}}>
+    <div class="row">
+        <div class="col-xs-12">
+		    <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#all">All</a></li>
+                      <li><a href="#name">Name</a></li>
+                      <li><a href="#category">Category</a></li>
+                      <li><a href="#author">Author</a></li>
+                      <li><a href="#publisher">Publisher</a></li>
+                      <li><a href="#type">Type</a></li>
+                      <li><a href="#language">Language</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <input type="text" class="form-control" name="search_text" placeholder="Search Text ...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+	</div>
+</form>
+  <hr>
+    <div class="row list-group">
+      {{ for p in products:}}
+        <div class="item  col-xs-3 col-lg-3">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{=URL('fast_download',args=p.pimage)}}" alt="{{=p.pname}}" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{=p.pname}}</h4>
+                    <div class="group inner list-group-item-text">
+                      <p>Author   : {{=p.pauthor}}</p>
+                      <p>Category : {{=p.pcategory}}<p>
+                      <p>Language : {{=p.planguage}}<p>
+                      <p>Rating   : {{ for r in range(p.prating):}}<span class="glyphicon glyphicon-star"></span>{{pass}}<p>
+                  </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <a class="btn btn-success pull-right" href="{{=URL(request.application,'default','viewproductdetails',args=[p.id])}}">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{pass}}
+    </div>
+    <div class="text-center">
+      {{=XML(pagintator)}}
+    </div>
+</div>

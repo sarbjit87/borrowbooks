@@ -1,0 +1,82 @@
+{{extend 'layout.html'}}
+<div class="container-fluid">
+  <div class="row" style1="border:none; background:white; height:210px;">
+		<div class="col-xs-6">
+			<img src="{{=URL('fast_download',args=productdetails.pimage)}}" style="border: 3px solid #000; margin:10%;" />
+		</div>
+		<div class="col-xs-6">
+			<h3>{{=productdetails.pname}} &nbsp; &nbsp; {{ for r in range(productdetails.prating):}}<span class="glyphicon glyphicon-star"></span>{{pass}} </h3>
+      <hr>
+      <p style="font-size:16px; color:#03225C;">Category  : {{=productdetails.pcategory}}</p>
+      <p style="font-size:16px; color:#03225C;">Language  : {{=productdetails.planguage}}</p>
+      <p style="font-size:16px; color:#03225C;">Type      : {{=productdetails.ptype}}</p>
+      <p style="font-size:16px; color:#03225C;">Author    : {{=productdetails.planguage}}</p>
+      <p style="font-size:16px; color:#03225C;">Publisher : {{=productdetails.ppublisher}}</p>
+      <hr>
+      {{if auth.is_logged_in():}}
+        <div class="btn-group cart">
+          <a href="{{=URL('default', 'conformorder', args=[productdetails.id])}}">
+  			     <button type="button" class="btn btn-success">
+  							Borrow
+  						</button>
+            </a>
+  			</div>
+  			<div class="btn-group wishlist">
+            <a href="{{=URL('default', 'addtowishlist', args=[productdetails.id])}}">
+              <button type="button" class="btn btn-danger">
+  							Add to Wishlist
+  						</button>
+            </a>
+  			</div>
+      {{else:}}
+      <div class="btn-group">
+          <a href="{{=URL('default', 'user', args='login')}}">
+            <button type="button" class="btn btn-danger">
+              Login to Borrow
+            </button>
+          </a>
+      </div>
+      {{pass}}
+		</div>
+	</div>
+  <div class="row">
+    <ul class="nav nav-tabs">
+       <li class="active"><a data-toggle="tab" href="#Description">Description</a></li>
+       <li><a data-toggle="tab" href="#Reviews">Reviews</a></li>
+   </ul>
+   <div class="tab-content">
+       <div id="Description" class="tab-pane fade in active" style=" font-size:16px; color:#03225C; margin-left:2%; margin-top:2%; margin-right:2%; margin-bottom:3%;">
+           <p>{{=XML(productdetails.pdescription.replace('\n','<br/>'))}}</p>
+       </div>
+       <div id="Reviews" class="tab-pane fade" style="font-size:16px; color:#03225C; margin-left:2%; margin-top:2%; margin-right:2%; margin-bottom:3%;">
+           {{if auth.is_logged_in():}}
+           <hr>
+           <form enctype="multipart/form-data" method="POST" action={{=URL('default','postreview')}}>
+            <div class="form-group">
+              <label for="comment">Leave your review :</label>
+              <textarea class="form-control" rows="5" name="review_comment"></textarea>
+              <label for="sel1">Rating :</label>
+              <select class="form-control" name="review_rating">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option selected="selected">5</option>
+              </select>
+              <input type="hidden" name="productid" value={{=productdetails.id}} id="productid">
+              <span class="input-group-btn" style="padding:10px;">
+                  <button class="btn btn-success pull-right" type="submit">Submit</button>
+              </span>
+            </div>
+          </form>
+          {{pass}}
+          {{ for rev in reviewdetails:}}
+            <p>{{ =rev['review_text'] }}</p>
+            <p class="pull-right" style="font-size:14px;">{{ =rev['username'] }} &nbsp; &nbsp; {{ for x in range(rev['review_rating']):}}<span class="glyphicon glyphicon-star"></span>{{pass}}</p>
+            <br>
+            <hr>
+          {{pass}}
+       </div>
+   </div>
+  </div>
+</div>
