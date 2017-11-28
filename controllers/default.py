@@ -47,11 +47,16 @@ def addtowishlist():
     productcount = len(db(query).select())
     if productcount > 2:
         response.flash = "More than 2 customers has this products in their wishlist"
-    db.wishlist.insert(borrower=auth.user.id,
+    row = db.wishlist(borrower=auth.user.id,products=pid)
+    print "deubg",row
+    if not row:
+        db.wishlist.insert(borrower=auth.user.id,
                         products=pid,
                         wishlist_date=datetime.datetime.now())
-    if request.env.http_referer:
         session.addtowishlistflash = True
+    else:
+        session.addtowishlistexistsflash = True
+    if request.env.http_referer:
         redirect(request.env.http_referer)
     redirect(URL(request.application,'default','index'))
 
@@ -204,6 +209,9 @@ def viewproductdetails():
     if session.addtowishlistflash:
         del session.addtowishlistflash
         response.flash = notification("Product added successfully to your wishlist","success")
+    elif session.addtowishlistexistsflash:
+        del session.addtowishlistexistsflash
+        response.flash = notification("Product already exists in your wishlist","info")
     elif session.borrowedproductmsg:
         del session.borrowedproductmsg
         response.flash = notification("Product borrowed successfully","success")

@@ -1,10 +1,10 @@
 {{extend 'layout.html'}}
 <div class="container-fluid">
   <div class="row" style1="border:none; background:white; height:210px;">
-		<div class="col-xs-6">
-			<img src="{{=URL('fast_download',args=productdetails.pimage)}}" style="border: 3px solid #000; margin:10%;" />
+		<div class="col-xs-12 col-sm-6">
+			<img src="{{=URL('fast_download',args=productdetails.pimage)}}" class="view-image" style="border:3px solid #000;" />
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-12 col-sm-6">
 			<h3>{{=productdetails.pname}} &nbsp; &nbsp; {{ for r in range(productdetails.prating):}}<span class="glyphicon glyphicon-star"></span>{{pass}} </h3>
       <hr>
       <p style="font-size:16px; color:#03225C;">Category  : {{=productdetails.pcategory}}</p>
@@ -39,6 +39,7 @@
       {{pass}}
 		</div>
 	</div>
+  <br>
   <div class="row">
     <ul class="nav nav-tabs">
        <li class="active"><a data-toggle="tab" href="#Description">Description</a></li>
