@@ -21,6 +21,8 @@ You can populate the database with some random data including images using the f
 
 `borrowbooks/scripts/populate_database.py`
 
+## LIVE Demo : [Click Here](https://sarbjit87.pythonanywhere.com/borrowbooks/default/index)
+
 ## Some Snapshots
 
 ### Homepage
