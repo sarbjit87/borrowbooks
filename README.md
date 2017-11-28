@@ -23,4 +23,8 @@ You can populate the database with some random data including images using the f
 
 ## Some Snapshots
 
+Review 
+
+![reviews](https://user-images.githubusercontent.com/4709020/33297328-5e04b2c0-d3ae-11e7-992d-1e96183e7610.png)
+
 
