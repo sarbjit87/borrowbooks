@@ -23,8 +23,22 @@ You can populate the database with some random data including images using the f
 
 ## Some Snapshots
 
-Review 
+### Homepage
+
+![home1](https://user-images.githubusercontent.com/4709020/33297552-a5eca5f6-d3af-11e7-8414-0c42f1b7be40.png)
+![home2](https://user-images.githubusercontent.com/4709020/33297554-a811aca0-d3af-11e7-9d92-c8e41fca1889.png)
+
+### View Book Description
+
+![viewdescription](https://user-images.githubusercontent.com/4709020/33297558-ab1e9962-d3af-11e7-8b56-f63a846d5e5f.png)
+
+### Search 
+
+![search](https://user-images.githubusercontent.com/4709020/33297561-ae98ba50-d3af-11e7-9f28-8587e6190a4b.png)
+
+### Review and Notification
 
 ![reviews](https://user-images.githubusercontent.com/4709020/33297328-5e04b2c0-d3ae-11e7-992d-1e96183e7610.png)
 
+![notification](https://user-images.githubusercontent.com/4709020/33297564-b0e72ea4-d3af-11e7-92bf-75a46527d708.png)
 
